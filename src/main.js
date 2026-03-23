@@ -507,3 +507,19 @@ if (document.readyState === 'loading') {
     }
   })
 }
+const orb = document.querySelector(".orb-core");
+
+orb.addEventListener("mousemove", (e) => {
+  const rect = orb.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+
+  const rotateX = (y / rect.height - 0.5) * 20;
+  const rotateY = (x / rect.width - 0.5) * -20;
+
+  orb.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.08)`;
+});
+
+orb.addEventListener("mouseleave", () => {
+  orb.style.transform = "rotateX(0deg) rotateY(0deg) scale(1)";
+});
